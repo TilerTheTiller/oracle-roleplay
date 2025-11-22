@@ -1,0 +1,6 @@
+"darkrp"
+{
+	"title"	"Oracle Roleplay"
+	"base"	"base"
+	"menusystem" "1"
+}

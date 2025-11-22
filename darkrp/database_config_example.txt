@@ -1,0 +1,82 @@
+-- ═══════════════════════════════════════════════════════════════════════════
+--  DarkRP Database Configuration Example
+--  Copy this file to garrysmod/data/darkrp/database_config.txt
+--  and modify the values for your database
+-- ═══════════════════════════════════════════════════════════════════════════
+
+return {
+	-- MySQL Server Connection Details
+	host = "localhost",           -- Database server IP/hostname
+	username = "root",            -- Database username
+	password = "",                -- Database password
+	database = "darkrp",          -- Database name
+	port = 3306,                  -- MySQL port (default: 3306)
+	
+	-- Connection Pool Settings
+	maxPoolSize = 5,              -- Maximum number of concurrent connections
+	connectionTimeout = 10,       -- Timeout in seconds for connection attempts
+	
+	-- Query Settings
+	queryTimeout = 30,            -- Maximum query execution time (seconds)
+	retryAttempts = 3,            -- Number of retry attempts on connection failure
+	retryDelay = 1,               -- Delay between retry attempts (seconds)
+	
+	-- Logging Configuration
+	logQueries = false,           -- Log all SQL queries (debugging)
+	logErrors = true,             -- Log database errors
+	logConnections = true,        -- Log connection attempts
+	
+	-- Performance Options
+	enableCache = true,           -- Enable query result caching
+	cacheExpiration = 300,        -- Cache lifetime in seconds (5 minutes)
+}
+
+--[[
+	SETUP INSTRUCTIONS:
+	
+	1. Install MySQLoo9:
+	   - Download from: https://github.com/FredyH/MySQLOO/releases
+	   - Extract gmsv_mysqloo_*.dll to garrysmod/lua/bin/
+	   - Create the 'bin' folder if it doesn't exist
+	
+	2. Create the database:
+	   - Open MySQL command line or phpMyAdmin
+	   - Run: CREATE DATABASE darkrp CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+	   - The tables will be created automatically when the server starts
+	
+	3. Configure this file:
+	   - Copy to: garrysmod/data/darkrp/database_config.txt
+	   - Update the connection details above
+	   - Restart your server
+	
+	4. Verify connection:
+	   - Run console command: darkrp_db_stats
+	   - You should see "Connected: YES"
+	
+	TROUBLESHOOTING:
+	
+	- "MySQLoo module not found":
+	  Make sure gmsv_mysqloo_*.dll is in garrysmod/lua/bin/
+	  Use the correct file for your OS (win32/win64/linux32/linux64)
+	
+	- "Access denied" or "Connection failed":
+	  Check your MySQL username, password, and host
+	  Ensure MySQL user has permissions on the database
+	  Try: GRANT ALL ON darkrp.* TO 'username'@'localhost';
+	
+	- "Unknown database":
+	  Create the database first: CREATE DATABASE darkrp;
+	
+	- Connection timeouts:
+	  Check if MySQL server is running
+	  Check firewall settings
+	  Increase connectionTimeout value
+	
+	SECURITY NOTES:
+	
+	- Never commit this file with real credentials to version control
+	- Use a dedicated MySQL user with limited permissions
+	- Consider using localhost only (not 0.0.0.0) for security
+	- Keep your MySQL server updated
+	- Use strong passwords
+]]
